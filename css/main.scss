@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Prompt", sans-serif;
+    list-style-type: none;
+
+    img {
+        width: 100%;
+    }
+}
+
+body {
+    @media (min-width: 768px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+
+        .titles {
+            h1 {
+                font-weight: 500;
+            }
+
+            h2 {
+                font-weight: 300;
+                color: #6563ff;
+                font-size: 1.4rem;
+            }
+
+            &-subtitle {
+                margin: 2rem 0;
+            }
+
+            a {
+                color: #4947b6;
+
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    color: #4facf8;
+                }
+            }
+        }
+
+        .cards {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 22rem;
+            background: #f8f8f8;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 0.8rem;
+            padding: 0.8rem;
+
+            .card {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                position: relative;
+                perspective: 1000px;
+                transform-style: preserve-3d;
+                width: 5rem;
+                height: 5rem;
+
+                &.shake {
+                    animation: shake 0.35s ease-in-out;
+                }
+
+                .front-view {
+                    width: 4rem;
+                    height: 4rem;
+
+                    img {
+                        width: 1rem;
+                    }
+                }
+                .back-view {
+                    width: 4rem;
+                    height: 4rem;
+                    transform: rotateY(-180deg);
+
+                    img {
+                        width: 2rem;
+                    }
+                }
+
+                .view {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                    border-radius: 0.8rem;
+                    padding: 0.8rem;
+                    backface-visibility: hidden;
+                    pointer-events: none;
+                    position: absolute;
+                    transition: transform 0.25s linear;
+                }
+
+                &.flip {
+                    .front-view {
+                        transform: rotateY(180deg);
+                    }
+                    .back-view {
+                        transform: rotateY(0);
+                    }
+                }
+            }
+        }
+
+        .end-game-warning {
+            position: absolute;
+            box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0.8rem;
+            background: white;
+            padding: 1.9rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease-in-out;
+
+            &.show {
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            p {
+                span {
+                    display: block;
+                }
+
+                margin-bottom: 1rem;
+            }
+
+            button {
+                width: 100%;
+                padding: 0.5rem;
+                font-size: 1.1rem;
+                background: #6563ff;
+                border: 0;
+                outline: 0;
+                border-radius: 0.8rem;
+                color: white;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    background: #4947b6;
+                }
+            }
+        }
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-5px);
+    }
+    40% {
+        transform: translateX(5px);
+    }
+    60% {
+        transform: translateX(-5px);
+    }
+    80% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
